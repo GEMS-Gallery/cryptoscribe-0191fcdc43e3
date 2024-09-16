@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Blog</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <h1>Crypto Blog</h1>
+        <button id="newPostBtn">New Post</button>
+    </header>
+    <main>
+        <section id="newPostForm" style="display: none;">
+            <h2>Create New Post</h2>
+            <form id="postForm">
+                <input type="text" id="postTitle" placeholder="Title" required>
+                <input type="text" id="postAuthor" placeholder="Author" required>
+                <div id="postBody" contenteditable="true" class="rich-editor" data-placeholder="Write your post..."></div>
+                <div class="formatting-tools">
+                    <button type="button" data-command="bold">B</button>
+                    <button type="button" data-command="italic">I</button>
+                    <button type="button" data-command="underline">U</button>
+                </div>
+                <button type="submit">Publish</button>
+            </form>
+        </section>
+        <section id="posts"></section>
+    </main>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
