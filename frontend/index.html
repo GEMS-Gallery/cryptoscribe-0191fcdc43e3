@@ -101,12 +101,47 @@
         .new-post-icon:hover {
             background-color: #e0e0e0;
         }
+        #newPostForm {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #333333;
+        }
+        #newPostForm input, #newPostForm textarea, #newPostForm select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+        #newPostForm button {
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>H4ck3r F0rum</h1>
-        <div class="new-post-icon" onclick="createNewPost()">+</div>
+        <div class="new-post-icon" onclick="toggleNewPostForm()">+</div>
+        <div id="newPostForm">
+            <input type="text" id="postTitle" placeholder="Title">
+            <textarea id="postContent" placeholder="Content"></textarea>
+            <input type="text" id="postAuthor" placeholder="Author">
+            <select id="postCategory">
+                <option value="Red Team">Red Team</option>
+                <option value="Pen Testing">Pen Testing</option>
+                <option value="Exploit Dev">Exploit Dev</option>
+                <option value="Cryptography">Cryptography</option>
+                <option value="Social Engineering">Social Engineering</option>
+                <option value="CTF">CTF</option>
+            </select>
+            <button onclick="createNewPost()">Create Post</button>
+        </div>
         <div class="categories">
             <div class="category" onclick="showPosts('Red Team', this)">
                 <h2>Red Team</h2>
@@ -136,57 +171,6 @@
         <div id="posts"></div>
     </div>
 
-    <script>
-        const posts = {
-            'Red Team': [
-                { title: "Advanced Persistence Techniques", content: "In this post, we'll explore cutting-edge methods for maintaining long-term access to target systems...", author: "shadowhunter", date: "2024-09-10" },
-                { title: "Evading Next-Gen Antivirus", content: "Learn how to bypass modern antivirus solutions using these innovative techniques...", author: "ghostbyte", date: "2024-09-09" }
-            ],
-            'Pen Testing': [
-                { title: "Web App Vulnerability Scanner Comparison", content: "We compare the top 5 web application vulnerability scanners to help you choose the best for your needs...", author: "securityninja", date: "2024-09-11" },
-                { title: "Mobile App Pentesting Guide", content: "A comprehensive guide to penetration testing Android and iOS applications...", author: "mobilehacker", date: "2024-09-08" }
-            ],
-            'Exploit Dev': [
-                { title: "Zero-Day Discovery in Popular CMS", content: "Details on a newly discovered vulnerability in a widely-used Content Management System...", author: "bugbountyking", date: "2024-09-12" },
-                { title: "Fuzzing Techniques for IoT Devices", content: "Explore various fuzzing methodologies tailored for Internet of Things devices...", author: "iotexplorer", date: "2024-09-07" }
-            ],
-            'Cryptography': [
-                { title: "Post-Quantum Cryptography Overview", content: "An introduction to cryptographic algorithms designed to withstand quantum computing attacks...", author: "quantumcoder", date: "2024-09-13" },
-                { title: "Breaking Weak Encryption Schemes", content: "Analysis and demonstration of vulnerabilities in poorly implemented encryption...", author: "cipherbreaker", date: "2024-09-06" }
-            ],
-            'Social Engineering': [
-                { title: "Crafting Convincing Phishing Campaigns", content: "Techniques for creating highly effective phishing emails and websites...", author: "socialmanipulator", date: "2024-09-14" },
-                { title: "Psychology of Persuasion in Hacking", content: "Understanding human behavior to improve social engineering success rates...", author: "mindgamer", date: "2024-09-05" }
-            ],
-            'CTF': [
-                { title: "Writeup: DefCon CTF 2024", content: "Detailed solutions and explanations for challenges from this year's DefCon CTF...", author: "ctfchampion", date: "2024-09-15" },
-                { title: "Building Your First CTF Challenge", content: "A guide to creating engaging and educational Capture The Flag challenges...", author: "challengemaker", date: "2024-09-04" }
-            ]
-        };
-
-        function showPosts(category, clickedElement) {
-            // Remove 'active' class from all categories
-            document.querySelectorAll('.category').forEach(cat => cat.classList.remove('active'));
-            
-            // Add 'active' class to the clicked category
-            clickedElement.classList.add('active');
-
-            const postsContainer = document.getElementById('posts');
-            postsContainer.innerHTML = `<h2>${category} Posts</h2>`;
-            posts[category].forEach(post => {
-                postsContainer.innerHTML += `
-                    <div class="post">
-                        <h3>${post.title}</h3>
-                        <p>${post.content}</p>
-                        <div class="post-meta">Posted by ${post.author} on ${post.date}</div>
-                    </div>
-                `;
-            });
-        }
-
-        function createNewPost() {
-            alert("Creating a new post... (Functionality not implemented in this demo)");
-        }
-    </script>
+    <script src="index.js"></script>
 </body>
 </html>
